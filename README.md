@@ -19,40 +19,87 @@ _This document contains the main commands and settings for configuring/installin
 
 Para configurar/instalar/usar o `timeshift` no `Linux Ubuntu`, você pode seguir estes passos:
 
-1. Abra o `Terminal Emulator`. Você pode fazer isso pressionando: `Ctrl + Alt + T`
+1. Abra o `Terminal Emulator`. Você pode fazer isso pressionando:
+
+    ```bash
+    Ctrl + Alt + T
+    ```
 
 2. Certifique-se de que seu sistema esteja limpo e atualizado.
 
-    2.1 Limpar o `cache` do gerenciador de pacotes `apt`. Especificamente, ele remove todos os arquivos de pacotes (`.deb`) baixados pelo `apt` e armazenados em `/var/cache/apt/archives/`. Digite o seguinte comando: `sudo apt clean` 
-    
-    2.2 Remover pacotes `.deb` antigos ou duplicados do cache local. É útil para liberar espaço, pois remove apenas os pacotes que não podem mais ser baixados (ou seja, versões antigas de pacotes que foram atualizados). Digite o seguinte comando: `sudo apt autoclean`
+    2.1 Limpar o `cache` do gerenciador de pacotes `apt`. Especificamente, ele remove todos os arquivos de pacotes (`.deb`) baixados pelo `apt` e armazenados em `/var/cache/apt/archives/`. Digite o seguinte comando:
+    ```bash
+    sudo apt clean
+    ```
 
-    2.3 Remover pacotes que foram automaticamente instalados para satisfazer as dependências de outros pacotes e que não são mais necessários. Digite o seguinte comando: `sudo apt autoremove -y`
+    2.2 Remover pacotes `.deb` antigos ou duplicados do `cache` local. É útil para liberar espaço, pois remove apenas os pacotes que não podem mais ser baixados (ou seja, versões antigas de pacotes que foram atualizados). Digite o seguinte comando:
+    ```bash
+    sudo apt autoclean
+    ```
 
-    2.4 Buscar as atualizações disponíveis para os pacotes que estão instalados em seu sistema. Digite o seguinte comando e pressione `Enter`: `sudo apt update`
+    2.3 Remover pacotes que foram automaticamente instalados para satisfazer as dependências de outros pacotes e que não são mais necessários. Digite o seguinte comando:
+    ```bash
+    sudo apt autoremove -y
+    ```
 
-    2.5 **Corrigir pacotes quebrados**: Isso atualizará a lista de pacotes disponíveis e tentará corrigir pacotes quebrados ou com dependências ausentes: `sudo apt --fix-broken install`
+    2.4 Buscar as atualizações disponíveis para os pacotes que estão instalados em seu sistema. Digite o seguinte comando e pressione `Enter`:
+    ```bash
+    sudo apt update
+    ```
 
-    2.6 Limpar o `cache` do gerenciador de pacotes `apt`. Especificamente, ele remove todos os arquivos de pacotes (`.deb`) baixados pelo `apt` e armazenados em `/var/cache/apt/archives/`. Digite o seguinte comando: `sudo apt clean` 
-    
-    2.7 Para ver a lista de pacotes a serem atualizados, digite o seguinte comando e pressione `Enter`:  `sudo apt list --upgradable`
+    2.5 **Corrigir pacotes quebrados**: Isso atualizará a lista de pacotes disponíveis e tentará corrigir pacotes quebrados ou com dependências ausentes:
+    ```bash
+    sudo apt --fix-broken install
+    ```
 
-    2.8 Realmente atualizar os pacotes instalados para as suas versões mais recentes, com base na última vez que você executou `sudo apt update`. Digite o seguinte comando e pressione `Enter`: `sudo apt full-upgrade -y`
-    
+    2.6 Limpar o `cache` do gerenciador de pacotes `apt` novamente:
+    ```bash
+    sudo apt clean
+    ```
+
+    2.7 Para ver a lista de pacotes a serem atualizados, digite o seguinte comando e pressione `Enter`:
+    ```bash
+    sudo apt list --upgradable
+    ```
+
+    2.8 Realmente atualizar os pacotes instalados para as suas versões mais recentes, com base na última vez que você executou `sudo apt update`. Digite o seguinte comando e pressione `Enter`:
+    ```bash
+    sudo apt full-upgrade -y
+    ```
 
 Para configurar/instalar/usar o `Timeshift` no `Linux Ubuntu` através do `Terminal Emulator`, você pode seguir os seguintes passos:
 
-1. **Instalar o `btrfs-tools` no `Linux Ubuntu`, você pode usar o seguinte comando no Terminal**: `sudo apt install btrfs-progs -y`
+1. **Instalar o `btrfs-tools` no `Linux Ubuntu`, você pode usar o seguinte comando no Terminal**:
+
+    ```bash
+    sudo apt install btrfs-progs -y
+    ```
     
     O pacote `btrfs-progs` contém as ferramentas de gerenciamento do sistema de arquivos `BTRFS`. Note que `btrfs-tools` é um nome de pacote mais antigo; em versões mais recentes do `Ubuntu`, ele foi renomeado para `btrfs-progs`. Certifique-se de que seu sistema está atualizado antes de instalar o pacote.
 
-2. **Adicione o repositório PPA do `Timeshift`**: Antes de instalar o `Timeshift`, é recomendável adicionar o repositório PPA para garantir que você está instalando a versão mais recente. Execute o seguinte comando: `sudo add-apt-repository ppa:teejee2008/timeshift -y`
+2. **Adicione o repositório PPA do `Timeshift`**: Antes de instalar o `Timeshift`, é recomendável adicionar o repositório PPA para garantir que você está instalando a versão mais recente. Execute o seguinte comando:
 
-4. **Atualize a lista de pacotes**: Após adicionar o repositório, atualize a lista de pacotes disponíveis: `sudo apt update`
+    ```bash
+    sudo add-apt-repository ppa:teejee2008/timeshift -y
+    ```
 
-5. **Instale o `Timeshift`**: Agora, instale o programa com o comando: `sudo apt install timeshift -y`
+4. **Atualize a lista de pacotes**: Após adicionar o repositório, atualize a lista de pacotes disponíveis:
 
-6. **Configure o `Timeshift`**: Após a instalação, você pode configurar o `Timeshift` executando-o pela primeira vez. Para abrir o `Timeshift` pelo  `Terminal Emulator`, digite: `sudo timeshift-gtk`
+    ```bash
+    sudo apt update
+    ```
+
+5. **Instale o `Timeshift`**: Agora, instale o programa com o comando:
+
+    ```bash
+    sudo apt install timeshift -y
+    ```
+
+6. **Configure o `Timeshift`**: Após a instalação, você pode configurar o `Timeshift` executando-o pela primeira vez. Para abrir o `Timeshift` pelo  `Terminal Emulator`, digite: 
+    
+    ```bash
+    sudo timeshift-gtk
+    ```
 
     Siga as instruções na tela para configurar as preferências de _backup_, como a escolha entre _backups_ automáticos ou manuais e a definição do tipo de _backup_ (incremental, baseado em `RSYNC` ou `BTRFS`).
 
@@ -83,7 +130,7 @@ A escolha entre `RSYNC` e `BTRFS` depende do seu sistema de arquivos e de como v
 ### 1.2 `Location`
 
 <div align="center">
-    <img src="figures/fig1.png" alt="Minha Imagem" />
+    <img src="docs/figures/fig1.png" alt="Minha Imagem" />
     <p>Fig. 1.</p>
 </div>
 
@@ -103,7 +150,7 @@ Quando você seleciona uma partição para seus _backups_, é recomendável esco
 ### 1.3 `Schedule`
 
 <div align="center">
-    <img src="figures/fig2.png" alt="Minha Imagem" />
+    <img src="docs/figures/fig2.png" alt="Minha Imagem" />
     <p>Fig. 2.</p>
 </div>
 
@@ -140,7 +187,7 @@ Lembre-se de que a manutenção de múltiplos _snapshots_ pode ocupar uma quanti
 ### 1.4 `User`
 
 <div align="center">
-    <img src="figures/fig3.png" alt="Minha Imagem" />
+    <img src="docs/figures/fig3.png" alt="Minha Imagem" />
     <p>Fig. 3.</p>
 </div>
 
@@ -217,11 +264,15 @@ A escolha do formato da data e hora é útil para facilitar a identificação do
 
 Para configurar/instalar/usar o `timeshift` no `Linux Ubuntu` sem precisar digitar linha por linha, você pode seguir estas etapas:
 
-1. Abra o `Terminal Emulator`. Você pode fazer isso pressionando: `Ctrl + Alt + T`
+1. Abra o `Terminal Emulator`. Você pode fazer isso pressionando:
+
+    ```bash
+    Ctrl + Alt + T
+    ```
 
 2. Digite o seguinte comando e pressione `Enter`:
 
-    ```
+    ```bash
     sudo apt clean
     sudo apt autoclean
     sudo apt autoremove -y
@@ -243,13 +294,21 @@ Para desinstalar o `Timeshift` pelo `Terminal Emulator` no `Linux Ubuntu`, você
 
 1. **Abra o `Terminal Emulator`**: Você pode fazer isso pressionando `Ctrl+Alt+T` ou procurando por `"Terminal"` no menu de aplicações.
 
-2. **Desinstalar o `Timeshift`**: Execute o seguinte comando para remover o `Timeshift` do seu sistema: `sudo apt remove timeshift -y`
+2. **Desinstalar o `Timeshift`**: Execute o seguinte comando para remover o `Timeshift` do seu sistema:
 
-3. **Limpar pacotes não necessários**: Após remover o `Timeshift`, pode ser uma boa ideia limpar os pacotes que não são mais necessários, o que pode ajudar a liberar espaço no disco. Execute o comando: `sudo apt autoremove -y`
+    ```bash
+    sudo apt remove timeshift -y
+    ```
+
+3. **Limpar pacotes não necessários**: Após remover o `Timeshift`, pode ser uma boa ideia limpar os pacotes que não são mais necessários, o que pode ajudar a liberar espaço no disco. Execute o comando:
+
+    ```bash
+    sudo apt autoremove -y
+    ```
 
 4. **Remover configurações residuais**: Se você deseja também remover as configurações e dados locais que foram usados pelo `Timeshift`, você pode executar:
 
-    ```
+    ```bash
     sudo rm -rf /etc/timeshift
     sudo rm -rf /var/log/timeshift
     ```
@@ -257,41 +316,43 @@ Para desinstalar o `Timeshift` pelo `Terminal Emulator` no `Linux Ubuntu`, você
 Esses comandos removerão o `Timeshift` e suas configurações, liberando espaço e removendo as configurações que foram personalizadas para o uso no seu sistema.
 
 
-## 3.  Restaurar o Sistema com `Timeshift` no LiveUSB
+## 3.  Restaurar o Sistema com `Timeshift` no `Live USB`
 
 ### 3.1 **Preparação: Montar Partições**
 
 1 **Monte a partição raiz `(/`)**:
 
-```
+```bash
 sudo mount /dev/sda2 /mnt
 ```
 
 2 **Monte a partição `/boot`**:
 
-```
+```bash
 sudo mount /dev/sda6 /mnt/boot
 ```
 
 3 **Monte os diretórios necessários para funcionamento do sistema**:
 
-```
+```bash
 sudo mount --bind /dev /mnt/dev
 sudo mount --bind /proc /mnt/proc
 sudo mount --bind /sys /mnt/sys
 ```
 
+
+
 ### 3.2 Instale e Configure o Timeshift
 
 1. **Monte a partição onde os backups estão armazenados**:
 
-```
+```bash
 sudo mount /dev/sda5 /mnt/timeshift
 ```
 
 2. **Instale o `Timeshift` (se necessário)**:
 
-```
+```bash
 sudo apt update
 sudo apt install timeshift -y
 ```
@@ -300,23 +361,25 @@ sudo apt install timeshift -y
 
 1 **Identifique o UUID**:
 
-```
+```bash
 blkid
 ```
 
 2 **Edite o arquivo de configuração**:
 
-```
+```bash
 sudo nano /etc/timeshift/timeshift.json
 ```
 
 3 Atualize o campo `"backup_device_uuid"` com o UUID correto da partição do _backup_.
 
+
+
 ### 3.3 Restaurar o Sistema com Timeshift
 
 1. **Execute o `Timeshift` em modo texto**:
 
-```
+```bash
 sudo timeshift --restore
 ```
 
@@ -326,7 +389,7 @@ sudo timeshift --restore
 
 3.1 **Reinstalar o GRUB? Digite**:
 
-```
+```bash
 y
 ```
 
@@ -334,21 +397,23 @@ y
 
 4. **Confirme a restauração**: Quando solicitado, confirme com:
 
-```
+```bash
 y
 ```
+
+
 
 ### 3.4 Finalizar a Restauração
 
 1. **Saia do Ambiente de Restauração**: Se você estiver no ambiente chroot, saia:
 
-```
+```bash
 exit
 ```
 
 2. **Desmonte as Partições Montadas**:
 
-```
+```bash
 sudo umount /mnt/dev
 sudo umount /mnt/proc
 sudo umount /mnt/sys
@@ -358,13 +423,13 @@ sudo umount /mnt
 
 3. **Reinicie o Computador**: Remova o LiveUSB antes de reiniciar para que o sistema inicialize do disco restaurado:
 
-```
+```bash
 sudo reboot
 ```
 
 ## Referências
 
-[1] OPENAI. ***Instalar `Timeshift` via terminal.*** Disponível em: <https://chat.openai.com/c/4b997bc7-af50-402f-9211-99d29fdd10a8> (texto adaptado). Acessado em: 23/04/2023 17:11.
+[1] OPENAI. ***Instalar o `timeshift` no `linux ubuntu` pelo `terminal emulator`.*** Disponível em: <https://chat.openai.com/c/4b997bc7-af50-402f-9211-99d29fdd10a8> (texto adaptado). Acessado em: 23/04/2023 17:11.
 
 [2] OPENAI. ***Vs code: editor popular.*** Disponível em: <https://chat.openai.com/c/b640a25d-f8e3-4922-8a3b-ed74a2657e42> (texto adaptado). Acessado em: 23/04/2024 17:10.
 
