@@ -69,7 +69,7 @@ Para configurar/instalar/usar o `timeshift` no `Linux Ubuntu`, você pode seguir
 
 Para configurar/instalar/usar o `Timeshift` no `Linux Ubuntu` através do `Terminal Emulator`, você pode seguir os seguintes passos:
 
-1. **Instalar o `btrfs-tools` no `Linux Ubuntu`, você pode usar o seguinte comando no Terminal**:
+1. **Instalar o `btrfs-tools` no `Linux Ubuntu`, você pode usar o seguinte comando no `Terminal Emulator`**:
 
     ```bash
     sudo apt install btrfs-progs -y
