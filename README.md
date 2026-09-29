@@ -69,7 +69,7 @@ Para configurar/instalar/usar o `timeshift` no `Linux Ubuntu`, você pode seguir
 
 Para configurar/instalar/usar o `Timeshift` no `Linux Ubuntu` através do `Terminal Emulator`, você pode seguir os seguintes passos:
 
-1. **Instalar o `btrfs-tools` no `Linux Ubuntu`, você pode usar o seguinte comando no Terminal**:
+1. **Instalar o `btrfs-tools` no `Linux Ubuntu`, você pode usar o seguinte comando no `Terminal Emulator`**:
 
     ```bash
     sudo apt install btrfs-progs -y
@@ -113,21 +113,51 @@ Aqui está o que acontece quando você marca mais de uma opção de _backup_, co
 
 - **Hard Links**: Para arquivos que não mudaram entre _snapshots_, o `Timeshift` usa _hard links_. Com _hard links-, vários arquivos em diferentes _snapshots_ podem apontar para o mesmo espaço no disco, economizando espaço. Só é feita uma nova cópia se o arquivo original for alterado.
 
-- **Gerenciamento de _Snapshots_**: Quando você configura diferentes frequências de backup, o `Timeshift` gerencia automaticamente os _snapshots_. Por exemplo, mesmo que um arquivo não tenha mudado desde o último _snapshot_ diário, ele ainda será incluído no _snapshot_ semanal, mas sem consumir espaço extra no disco.
+- **Gerenciamento de _Snapshots_**: Quando você configura diferentes frequências de _backup_, o `Timeshift` gerencia automaticamente os _snapshots_. Por exemplo, mesmo que um arquivo não tenha mudado desde o último _snapshot_ diário, ele ainda será incluído no _snapshot_ semanal, mas sem consumir espaço extra no disco.
 
-Portanto, mesmo marcando diferentes níveis de _snapshots_ para serem mantidos, o `Timeshift` irá gerenciar inteligentemente o espaço e não criará cópias duplicadas dos arquivos, a menos que haja mudanças neles. Isso otimiza o uso do espaço em disco e mantém os backups organizados e eficientes.
+Portanto, mesmo marcando diferentes níveis de _snapshots_ para serem mantidos, o `Timeshift` irá gerenciar inteligentemente o espaço e não criará cópias duplicadas dos arquivos, a menos que haja mudanças neles. Isso otimiza o uso do espaço em disco e mantém os _backups_ organizados e eficientes.
 
-### 1.1 `Type`
+### 1.1 Código completo para configurar/instalar/usar
+
+Para configurar/instalar/usar o `timeshift` no `Linux Ubuntu` sem precisar digitar linha por linha, você pode seguir estas etapas:
+
+1. Abrir o `Terminal Emulator`. Você pode fazer isso pressionando:
+
+    ```bash
+    Ctrl + Alt + T
+    ```
+
+2. Digite o seguinte comando e pressione `Enter`:
+
+    ```bash
+    sudo apt clean
+    sudo apt autoclean
+    sudo apt autoremove -y
+    sudo apt update
+    sudo apt --fix-broken install
+    sudo apt clean
+    sudo apt list --upgradable
+    sudo apt full-upgrade -y
+    sudo add-apt-repository -y ppa:teejee2008/timeshift
+    sudo apt install timeshift -y
+    sudo apt update -y
+    sudo timeshift-gtk
+    ```
+
+
+### 1.2 Configuração(ões)
+
+#### 1.2.1 `Type`
 
 Nesta tela do `Timeshift` você pode escolher entre dois tipos de tecnologias de _snapshots_:
 
-- **`RSYNC`**: Este é um método de _backup_ incremental que copia as diferenças entre o estado atual do sistema e o último snapshot. Ele suporta qualquer tipo de sistema de arquivos e é mais flexível em termos de armazenamento, uma vez que os backups podem ser salvos em qualquer local, incluindo unidades externas ou em outra partição. No entanto, como ele copia arquivos, pode ser um pouco mais lento e consumir mais espaço do que o `BTRFS` para as mesmas operações de backup.
+- **`RSYNC`**: Este é um método de _backup_ incremental que copia as diferenças entre o estado atual do sistema e o último snapshot. Ele suporta qualquer tipo de sistema de arquivos e é mais flexível em termos de armazenamento, uma vez que os _backups_ podem ser salvos em qualquer local, incluindo unidades externas ou em outra partição. No entanto, como ele copia arquivos, pode ser um pouco mais lento e consumir mais espaço do que o `BTRFS` para as mesmas operações de _backup_.
 
-- **`BTRFS`**: É um sistema de arquivos com funcionalidades avançadas, incluindo a capacidade de criar _snapshots_ quase instantâneos que não duplicam dados. Seu método de `"copy-on-write"` permite que os backups sejam extremamente rápidos e economizem espaço, uma vez que apenas as alterações desde o último snapshot são armazenadas. Contudo, para usar `BTRFS`, a partição raiz do seu sistema precisa estar usando o sistema de arquivos `BTRFS`, e os _snapshots_ são salvos na mesma partição.
+- **`BTRFS`**: É um sistema de arquivos com funcionalidades avançadas, incluindo a capacidade de criar _snapshots_ quase instantâneos que não duplicam dados. Seu método de `"copy-on-write"` permite que os _backups_ sejam extremamente rápidos e economizem espaço, uma vez que apenas as alterações desde o último snapshot são armazenadas. Contudo, para usar `BTRFS`, a partição raiz do seu sistema precisa estar usando o sistema de arquivos `BTRFS`, e os _snapshots_ são salvos na mesma partição.
 
-A escolha entre `RSYNC` e `BTRFS` depende do seu sistema de arquivos e de como você deseja gerenciar seus backups. Se você precisa de flexibilidade e está usando diferentes tipos de sistemas de arquivos, ou se deseja armazenar seus backups em locais diferentes, o `RSYNC` é a melhor escolha. Por outro lado, se você já está usando `BTRFS` e deseja a forma mais rápida e eficiente de armazenar _snapshots_ no mesmo dispositivo, a opção `BTRFS` seria ideal.
+A escolha entre `RSYNC` e `BTRFS` depende do seu sistema de arquivos e de como você deseja gerenciar seus _backups_. Se você precisa de flexibilidade e está usando diferentes tipos de sistemas de arquivos, ou se deseja armazenar seus _backups_ em locais diferentes, o `RSYNC` é a melhor escolha. Por outro lado, se você já está usando `BTRFS` e deseja a forma mais rápida e eficiente de armazenar _snapshots_ no mesmo dispositivo, a opção `BTRFS` seria ideal.
 
-### 1.2 `Location`
+#### 1.2.2 `Location`
 
 <div align="center">
     <img src="docs/figures/fig1.png" alt="Minha Imagem" />
@@ -147,7 +177,7 @@ Quando você seleciona uma partição para seus _backups_, é recomendável esco
 - **Seleção de _Snapshot_**: Você deve escolher uma partição que tenha espaço livre suficiente para armazenar seus _snapshots_. Idealmente, esta partição deve ser diferente daquela onde o sistema operacional está instalado, para que os _backups_ permaneçam seguros caso a partição do sistema seja corrompida ou afetada.
 
 
-### 1.3 `Schedule`
+#### 1.2.3 `Schedule`
 
 <div align="center">
     <img src="docs/figures/fig2.png" alt="Minha Imagem" />
@@ -184,7 +214,7 @@ Nesta tela do `Timeshift`, você pode definir a frequência e a quantidade de _s
 
 Lembre-se de que a manutenção de múltiplos _snapshots_ pode ocupar uma quantidade significativa de espaço no disco, então assegure-se de ter espaço suficiente na partição selecionada para armazená-los.
 
-### 1.4 `User`
+#### 1.2.4 `User`
 
 <div align="center">
     <img src="docs/figures/fig3.png" alt="Minha Imagem" />
@@ -201,7 +231,7 @@ Na tela de configurações do `Timeshift` que você está mostrando, há opçõe
 
 Portanto, ao selecionar `"Include All Files"`, você está optando por um _backup_ mais abrangente que inclui tanto os dados de configuração quanto os arquivos pessoais dos usuários. Isso pode ser importante para garantir que você não perca nenhum dado em caso de falha do sistema ou quando precisar restaurar um sistema para um estado anterior.
 
-### 1.5 `Filters`
+#### 1.2.5 `Filters`
 
 Caso tenha escolhido no Item `User` a opção `Include Only Hidden Files` e/ou `Include All Files`, na tela `"Include / Exclude Patterns"` do `Timeshift`, você pode gerenciar quais arquivos e pastas estão incluídos ou excluídos dos _snapshots_. Vamos entender os elementos da tela:
 
@@ -244,9 +274,9 @@ Caminhos:
 
     - **`Summary` (Resumo)**: Fornece um resumo das regras de inclusão e exclusão configuradas.
     
-Essa funcionalidade é útil para personalizar seus backups, permitindo que você exclua arquivos temporários ou desnecessários e inclua documentos importantes e configurações do sistema. Isso ajuda a economizar espaço em disco e a criar _snapshots_ mais rápidos e eficientes.
+Essa funcionalidade é útil para personalizar seus _backups_, permitindo que você exclua arquivos temporários ou desnecessários e inclua documentos importantes e configurações do sistema. Isso ajuda a economizar espaço em disco e a criar _snapshots_ mais rápidos e eficientes.
 
-### 1.6 `Misc`
+#### 1.2.6 `Misc`
 
 Esta tela nas configurações do `Timeshift` permite que você escolha o formato de data e hora usado para nomear os _snapshots_.
 
@@ -259,34 +289,6 @@ Esta tela nas configurações do `Timeshift` permite que você escolha o formato
     - Ao lado do exemplo, você vê a string de formatação correspondente: `%Y-%m-%d %H:%M:%S`. Aqui, `%Y` representa o ano com quatro dígitos, `%m` o mês, `%d` o dia, `%H` a hora no formato 24h, `%M` os minutos, e `%S` os segundos.
 
 A escolha do formato da data e hora é útil para facilitar a identificação dos _snapshots_, especialmente se você precisar encontrar um específico baseado na data e hora em que foi criado. Ao configurar isso, você personaliza como as datas serão mostradas em todos os _snapshots_ listados dentro do Timeshift, de acordo com sua preferência.
-
-### 1.1 Código completo para configurar/instalar/usar
-
-Para configurar/instalar/usar o `timeshift` no `Linux Ubuntu` sem precisar digitar linha por linha, você pode seguir estas etapas:
-
-1. Abrir o `Terminal Emulator`. Você pode fazer isso pressionando:
-
-    ```bash
-    Ctrl + Alt + T
-    ```
-
-2. Digite o seguinte comando e pressione `Enter`:
-
-    ```bash
-    sudo apt clean
-    sudo apt autoclean
-    sudo apt autoremove -y
-    sudo apt update
-    sudo apt --fix-broken install
-    sudo apt clean
-    sudo apt list --upgradable
-    sudo apt full-upgrade -y
-    sudo add-apt-repository -y ppa:teejee2008/timeshift
-    sudo apt install timeshift -y
-    sudo apt update -y
-    sudo timeshift-gtk
-    ```
-
 
 ## 2. Desinstalar o `Timeshift` pelo `Terminal Emulator`
 
@@ -320,11 +322,13 @@ Esses comandos removerão o `Timeshift` e suas configurações, liberando espaç
 
 ### 3.1 **Preparação: Montar Partições**
 
-1 **Monte a partição raiz `(/`)**:
+Para realizar a preparação, executar os passos abaixo:
 
-```bash
-sudo mount /dev/sda2 /mnt
-```
+1 **Monte a partição raiz `(/`)**: Para montar a partição raiz, execute o comando:
+
+    ```bash
+    sudo mount /dev/sda2 /mnt
+    ```
 
 2 **Monte a partição `/boot`**:
 
@@ -342,7 +346,7 @@ sudo mount --bind /sys /mnt/sys
 
 
 
-### 3.2 Instale e Configure o Timeshift
+### 3.2 Instale e Configure o `timeshift`
 
 1. **Monte a partição onde os backups estão armazenados**:
 
@@ -350,7 +354,7 @@ sudo mount --bind /sys /mnt/sys
 sudo mount /dev/sda5 /mnt/timeshift
 ```
 
-2. **Instale o `Timeshift` (se necessário)**:
+2. **Instale o `timeshift` (se necessário)**:
 
 ```bash
 sudo apt update
@@ -375,9 +379,9 @@ sudo nano /etc/timeshift/timeshift.json
 
 
 
-### 3.3 Restaurar o Sistema com Timeshift
+### 3.3 Restaurar o Sistema com `timeshift`
 
-1. **Execute o `Timeshift` em modo texto**:
+1. **Execute o `timeshift` em modo texto**:
 
 ```bash
 sudo timeshift --restore
@@ -429,7 +433,14 @@ sudo reboot
 
 ## Referências
 
-[1] OPENAI. ***Instalar o `timeshift` no `linux ubuntu` pelo `terminal emulator`.*** Disponível em: <https://chat.openai.com/c/4b997bc7-af50-402f-9211-99d29fdd10a8> (texto adaptado). Acessado em: 23/04/2023 17:11.
+[1] OPENAI.
+**Instalar o `timeshift` no `linux ubuntu` pelo `terminal emulator`.**
+Disponível em: <https://chat.openai.com/c/4b997bc7-af50-402f-9211-99d29fdd10a8> (texto adaptado).
+ChatGPT. Acessado em: 23/04/2023 17:11.
 
-[2] OPENAI. ***Vs code: editor popular.*** Disponível em: <https://chat.openai.com/c/b640a25d-f8e3-4922-8a3b-ed74a2657e42> (texto adaptado). Acessado em: 23/04/2024 17:10.
+[2] OPENAI.
+**Vs code: editor popular.**
+Disponível em: <https://chat.openai.com/c/b640a25d-f8e3-4922-8a3b-ed74a2657e42> (texto adaptado).
+ChatGPT.
+Acessado em: 23/04/2024 17:10.
 
