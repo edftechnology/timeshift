@@ -161,7 +161,7 @@ A escolha entre `RSYNC` e `BTRFS` depende do seu sistema de arquivos e de como v
 
 <div align="center">
     <img src="docs/figures/fig1.png" alt="Minha Imagem" />
-    <p>Fig. 1.</p>
+    <p>Fig. 1. Location.</p>
 </div>
 
 Esta tela do `Timeshift` é onde você seleciona o local onde os _snapshots_ (ou seja, os _backups_ do estado do sistema) serão armazenados. Aqui estão os elementos principais que você pode observar na interface:
@@ -181,7 +181,7 @@ Quando você seleciona uma partição para seus _backups_, é recomendável esco
 
 <div align="center">
     <img src="docs/figures/fig2.png" alt="Minha Imagem" />
-    <p>Fig. 2.</p>
+    <p>Fig. 2. Schedule.</p>
 </div>
 
 Nesta tela do `Timeshift`, você pode definir a frequência e a quantidade de _snapshots_ que deseja manter no sistema. Vamos detalhar cada parte:
@@ -218,7 +218,7 @@ Lembre-se de que a manutenção de múltiplos _snapshots_ pode ocupar uma quanti
 
 <div align="center">
     <img src="docs/figures/fig3.png" alt="Minha Imagem" />
-    <p>Fig. 3.</p>
+    <p>Fig. 3. User.</p>
 </div>
 
 Na tela de configurações do `Timeshift` que você está mostrando, há opções para gerenciar como os diretórios `home` dos usuários são incluídos nos _snapshots_:
@@ -326,9 +326,9 @@ Para realizar a preparação, executar os passos abaixo:
 
 1 **Monte a partição raiz `(/`)**: Para montar a partição raiz, execute o comando:
 
-    ```bash
-    sudo mount /dev/sda2 /mnt
-    ```
+```bash
+sudo mount /dev/sda2 /mnt
+```
 
 2 **Monte a partição `/boot`**:
 
